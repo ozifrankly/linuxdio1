@@ -1,31 +1,11 @@
 #!/bin/bash
 
-mkdir /publico
-mkdir /adm
-mkdir /ven
-mkdir /sec
+apt-get update && apt-get upgrade -y
+apt-get install apache2 -y
+apt-get install unzip -y
+apt-get install wget -y
 
-groupadd GRP_ADM
-groupadd GRP_VEN
-groupadd GRP_SEC
-
-chgrp GRP_VEN /ven/
-chgrp GRP_ADM /adm/
-chgrp GRP_SEC /sec/
-
-chmod 770 /adm
-chmod 770 /ven
-chmod 770 /sec
-chmod 777 /publico
-
-useradd -m -s /bin/bash -g GRP_ADM carlos
-useradd -m -s /bin/bash -g GRP_ADM maria
-useradd -m -s /bin/bash -g GRP_ADM joao
-
-useradd -m -s /bin/bash -g GRP_VEN debora
-useradd -m -s /bin/bash -g GRP_VEN sebastiana
-useradd -m -s /bin/bash -g GRP_VEN roberto
-
-useradd -m -s /bin/bash -g GRP_SEC josefina
-useradd -m -s /bin/bash -g GRP_SEC amanda
-useradd -m -s /bin/bash -g GRP_SEC rogerio
+cd /tmp
+wget https://github.com/denilsonbonatti/linux-site-dio/archive/refs/heads/main.zip
+unzip main.zip
+cp -r linux-site-dio-main/* /var/www/html/
